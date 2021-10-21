@@ -3,11 +3,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class main {
-
+    static List<String> buah = new ArrayList<>();
     public static void main(String[] args) throws IOException {
-        ArrayList<String> buah = new ArrayList<>();
+
         do {
             System.out.println("========= MENU ========");
             System.out.println("[1] Show All Buah");
@@ -26,9 +27,7 @@ public class main {
                     if (buah.size() == 0) {
                         System.out.println("Stok buah kosong");
                     } else {
-                        for (int i = 0; i < buah.size(); i++) {
-                            System.out.println("[" + (i + 1) + "] " + buah.get(i));
-                        }
+                        listBuah();
                     }
                     System.out.println("\n");
                     System.out.print("Press any key to continue");
@@ -38,7 +37,10 @@ public class main {
                     boolean temp = true;
                     do {
                         System.out.print("Masukkan nama buah baru: ");
-                        buah.add(input.readLine());
+                        String dataBuah = input.readLine();
+
+                        addBuah(dataBuah);
+
                         System.out.print("Masukkan buah lagi? [Y]");
                         String lanjut = input.readLine();
                         if (lanjut.contains("Y")) {
@@ -52,14 +54,12 @@ public class main {
                     if (buah.size() == 0) {
                         System.out.println("Buah tidak bisa diedit karena data kosong");
                     } else {
-                        for (int i = 0; i < buah.size(); i++) {
-                            System.out.println("[" + (i + 1) + "] " + buah.get(i));
-                        }
+                        listBuah();
                         System.out.print("Pilih Nomor Buah : ");
                         Integer num = Integer.parseInt(input.readLine());
                         System.out.print("Masukkan Nama Baru : ");
                         String namaBaru = input.readLine();
-                        buah.set(num - 1, namaBaru);
+                        editBuah(num,namaBaru);
                     }
                     System.out.println("\n");
                     System.out.print("Press any key to continue");
@@ -74,7 +74,7 @@ public class main {
                         }
                         System.out.print("Pilih Nomor Buah : ");
                         Integer num = Integer.parseInt(input.readLine());
-                        buah.remove(num - 1);
+                        deleteBuah(num);
                     }
                     System.out.println("\n");
                     System.out.print("Press any key to continue");
@@ -88,5 +88,23 @@ public class main {
 
             }
         } while (true);
+    }
+
+    public static void listBuah(){
+        for (int i = 0; i < buah.size(); i++) {
+            System.out.println("[" + (i + 1) + "] " + buah.get(i));
+        }
+    }
+
+    public static void addBuah(String listBuah){
+        buah.add(listBuah);
+    }
+
+    public static void editBuah(int index, String namaBuah){
+        buah.set(index - 1, namaBuah);
+    }
+
+    public static void deleteBuah(int index){
+        buah.remove(index - 1);
     }
 }
