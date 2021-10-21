@@ -69,9 +69,7 @@ public class main {
                     if (buah.size() == 0) {
                         System.out.println("Buah tidak bisa hapus karena data kosong");
                     } else {
-                        for (int i = 0; i < buah.size(); i++) {
-                            System.out.println("[" + (i + 1) + "] " + buah.get(i));
-                        }
+                        listBuah();
                         System.out.print("Pilih Nomor Buah : ");
                         Integer num = Integer.parseInt(input.readLine());
                         deleteBuah(num);
